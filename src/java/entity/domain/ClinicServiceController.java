@@ -175,8 +175,8 @@ public class ClinicServiceController implements Serializable {
     private void performDestroy() {
         try {
             if (current.getImage() != null) {
-                System.out.println("Deleting " + current.getImage()+ ".");
-                new File(current.getImage()).delete();
+                System.out.println("Deleting " + current.getImage().replace("\\", "\\\\") + ".");
+                new File(current.getImage().replace("\\", "\\\\")).delete();
             }
             getFacade().remove(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClinicServiceDeleted"));
