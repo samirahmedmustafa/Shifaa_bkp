@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateClinicServiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form enctype="multipart/form-data">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClinicServiceLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{clinicServiceController.selected.id}" title="#{bundle.CreateClinicServiceTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateClinicServiceLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{clinicServiceController.selected.name}" title="#{bundle.CreateClinicServiceTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateClinicServiceLabel_image}" for="image" />
+                    <h:inputFile id="image" value="#{clinicServiceController.image}" title="#{bundle.CreateClinicServiceTitle_image}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clinicServiceController.create}" value="#{bundle.CreateClinicServiceSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clinicServiceController.prepareList}" value="#{bundle.CreateClinicServiceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateClinicServiceIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
