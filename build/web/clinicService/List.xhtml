@@ -36,7 +36,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClinicServiceTitle_image}"/>
                             </f:facet>
-                            <h:graphicImage library="images" name="#{item.image}" width="200" height="171" />
+                            <h:graphicImage value="#{item.image}" width="200" height="171" alt=""/>
 
                         </h:column>
                         <h:column>
@@ -57,6 +57,7 @@
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListClinicServiceIndexLink}"/>
             </h:form>
+
         </ui:define>
     </ui:composition>
 

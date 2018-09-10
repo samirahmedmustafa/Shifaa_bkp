@@ -1,5 +1,6 @@
 package entity.domain;
 
+import entity.domain.util.Helper;
 import entity.domain.util.JsfUtil;
 import entity.domain.util.PaginationHelper;
 import facade.ClinicServiceFacade;
@@ -50,7 +51,7 @@ public class ClinicServiceController implements Serializable {
     public int doUpload() throws MessagingException {
         if (!image.getSubmittedFileName().equals("")) {
             String imgName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + image.getSubmittedFileName();
-            String fileFullPath = "C:\\Users\\sawad\\Documents\\NetBeansProjects\\Shifaa\\web\\resources\\images\\services\\" + imgName;
+            String fileFullPath = Helper.getAbsPath("services") + imgName;
             try {
                 InputStream inputStream = image.getInputStream();
                 File file = new File(fileFullPath);
@@ -67,7 +68,8 @@ public class ClinicServiceController implements Serializable {
                 System.out.println("Unable to save file due to ......." + e.getMessage());
                 return 1;
             }
-            fileFullPath = "services/" + imgName;
+            System.out.println(Helper.getAppPath("services") + imgName);
+            fileFullPath = Helper.getAppPath("services") + imgName;
             current.setImage(fileFullPath);
         }
         return 0;
@@ -179,9 +181,9 @@ public class ClinicServiceController implements Serializable {
         try {
             if (current.getImage() != null) {
                 System.out.println("Deleting " + current.getImage()
-                        .replace("services/", "C:\\Users\\sawad\\Documents\\NetBeansProjects\\Shifaa\\web\\resources\\images\\services\\") + ".");
+                        .replace(Helper.getAppPath("services"), Helper.getAbsPath("services")) + ".");
                 new File(current.getImage()
-                        .replace("services/", "C:\\Users\\sawad\\Documents\\NetBeansProjects\\Shifaa\\web\\resources\\images\\services\\")
+                        .replace(Helper.getAppPath("services"), Helper.getAbsPath("services"))
                 ).delete();
             }
             getFacade().remove(current);
