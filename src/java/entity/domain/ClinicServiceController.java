@@ -36,6 +36,7 @@ public class ClinicServiceController implements Serializable {
     private facade.ClinicServiceFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private String prevImage;
 
     public ClinicServiceController() {
     }
@@ -141,18 +142,30 @@ public class ClinicServiceController implements Serializable {
     public String prepareEdit() {
         current = (ClinicService) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        prevImage = current.getImage();
         return "Edit";
     }
 
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClinicServiceUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+    public String update() throws MessagingException {
+        if (prevImage != null) {
+            System.out.println("Deleting " + prevImage.replace(Helper.getAppPath("services"), Helper.getAbsPath("services")) + ".");
+            new File(prevImage
+                    .replace(Helper.getAppPath("services"), Helper.getAbsPath("services"))
+            ).delete();
         }
+        if (0 == doUpload()) {
+            try {
+                getFacade().edit(current);
+                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClinicServiceUpdated"));
+                return "View";
+            } catch (Exception e) {
+                JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                return null;
+            }
+        } else {
+            System.out.println("create function ........... Service is not added.");
+        }
+        return "failed_to_create";
     }
 
     public String destroy() {

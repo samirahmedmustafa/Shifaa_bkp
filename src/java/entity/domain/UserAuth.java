@@ -14,10 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-/**
- * @author sawad
- */
-@Entity
+@Entity(name = "user_auth")
 public class UserAuth implements Serializable {
 
     @Id

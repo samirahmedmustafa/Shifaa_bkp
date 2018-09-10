@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 /**
  * @author sawad
  */
-@Entity
+@Entity(name = "group_auth")
 public class GroupAuth implements Serializable {
 
     @Id

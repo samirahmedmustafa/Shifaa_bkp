@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/failed_to_create.xhtml</file>
             <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/clinicService/Create.xhtml</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/src/java/entity/domain/util/NewClass.java</file>
+            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/src/java/entity/domain/ClinicServiceController.java</file>
+            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/src/java/entity/domain/util/Helper.java</file>
+            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/clinicService/Edit.xhtml</file>
             <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/clinicService/List.xhtml</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/src/java/diagram/diagram.jpa</file>
             <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/index.xhtml</file>
         </group>
     </open-files>
