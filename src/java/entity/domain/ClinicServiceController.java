@@ -49,8 +49,8 @@ public class ClinicServiceController implements Serializable {
 
     public int doUpload() throws MessagingException {
         if (!image.getSubmittedFileName().equals("")) {
-            String fileFullPath = "C:\\Users\\sawad\\Documents\\NetBeansProjects\\Shifaa\\web\\resources\\images\\services\\" + new SimpleDateFormat("yyyyMMddHHmmssSSS")
-                    .format(new Date()) + image.getSubmittedFileName();
+            String imgName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + image.getSubmittedFileName();
+            String fileFullPath = "C:\\Users\\sawad\\Documents\\NetBeansProjects\\Shifaa\\web\\resources\\images\\services\\" + imgName;
             try {
                 InputStream inputStream = image.getInputStream();
                 File file = new File(fileFullPath);
@@ -61,10 +61,13 @@ public class ClinicServiceController implements Serializable {
                 while ((length = inputStream.read(buffer)) > 0) {
                     fileOutputStream.write(buffer, 0, length);
                 }
+                fileOutputStream.close();
+                inputStream.close();
             } catch (Exception e) {
                 System.out.println("Unable to save file due to ......." + e.getMessage());
                 return 1;
             }
+            fileFullPath = "services/" + imgName;
             current.setImage(fileFullPath);
         }
         return 0;
@@ -175,8 +178,11 @@ public class ClinicServiceController implements Serializable {
     private void performDestroy() {
         try {
             if (current.getImage() != null) {
-                System.out.println("Deleting " + current.getImage().replace("\\", "\\\\") + ".");
-                new File(current.getImage().replace("\\", "\\\\")).delete();
+                System.out.println("Deleting " + current.getImage()
+                        .replace("services/", "C:\\Users\\sawad\\Documents\\NetBeansProjects\\Shifaa\\web\\resources\\images\\services\\") + ".");
+                new File(current.getImage()
+                        .replace("services/", "C:\\Users\\sawad\\Documents\\NetBeansProjects\\Shifaa\\web\\resources\\images\\services\\")
+                ).delete();
             }
             getFacade().remove(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClinicServiceDeleted"));
