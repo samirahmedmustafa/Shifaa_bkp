@@ -8,6 +8,7 @@ import facade.UserAuthFacade;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -112,11 +113,23 @@ public class UserAuthController implements Serializable {
 
     public String prepareEdit() {
         current = (UserAuth) getItems().getRowData();
+        groups = new ArrayList<>();
+        for(GroupAuth g: current.getGroupAuths()) {
+            System.out.println(g.getGroupname());
+            groups.add(g.getId().toString());
+        }
+        current.setGroupAuths(current.getGroupAuths());
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
-    public String update() {
+    public String update() throws NoSuchAlgorithmException {
+        current.getGroupAuths().clear();
+        for (String id : groups) {
+            GroupAuth groupAuth = groupAuthFacade.find(Long.parseLong(id));
+            current.addGroupAuth(groupAuth);
+        }
+        current.setPassword(new EncryptPassword().encrypt("MD5", current.getPassword()));
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserAuthUpdated"));
