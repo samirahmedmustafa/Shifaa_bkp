@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -34,6 +36,10 @@ public class UserAuth implements Serializable {
     private Clinic clinic;
 
     @ManyToMany
+    @JoinTable(name = "user_group_auth",
+            joinColumns = @JoinColumn(name = "username"),
+            inverseJoinColumns = @JoinColumn(name = "groupname")
+    )
     private List<GroupAuth> groupAuths;
 
     public UserAuth() {

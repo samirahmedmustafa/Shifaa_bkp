@@ -5,6 +5,7 @@ import entity.domain.util.PaginationHelper;
 import facade.GroupAuthFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -29,6 +30,10 @@ public class GroupAuthController implements Serializable {
     private int selectedItemIndex;
 
     public GroupAuthController() {
+    }
+
+    public List<GroupAuth> getGroups() {
+        return ejbFacade.findAll();
     }
 
     public GroupAuth getSelected() {

@@ -165,7 +165,7 @@ public class ClinicServiceController implements Serializable {
         } else {
             System.out.println("create function ........... Service is not added.");
         }
-        return "failed_to_create";
+        return "/failed_to_create";
     }
 
     public String destroy() {

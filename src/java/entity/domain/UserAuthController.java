@@ -25,10 +25,9 @@ import javax.faces.model.SelectItem;
 @SessionScoped
 public class UserAuthController implements Serializable {
 
+    private List<String> groups;
     @EJB
     private GroupAuthFacade groupAuthFacade;
-
-    private List<String> groupIds;
     private UserAuth current;
     private DataModel items = null;
 
@@ -37,15 +36,15 @@ public class UserAuthController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    public List<String> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<String> groups) {
+        this.groups = groups;
+    }
+
     public UserAuthController() {
-    }
-
-    public List<String> getGroupIds() {
-        return groupIds;
-    }
-
-    public void setGroupIds(List<String> groupIds) {
-        this.groupIds = groupIds;
     }
 
     public UserAuth getSelected() {
@@ -68,6 +67,7 @@ public class UserAuthController implements Serializable {
                 public int getItemsCount() {
                     return getFacade().count();
                 }
+
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
@@ -95,7 +95,7 @@ public class UserAuthController implements Serializable {
     }
 
     public String create() throws NoSuchAlgorithmException {
-        for (String id : groupIds) {
+        for (String id : groups) {
             GroupAuth groupAuth = groupAuthFacade.find(Long.parseLong(id));
             current.addGroupAuth(groupAuth);
         }

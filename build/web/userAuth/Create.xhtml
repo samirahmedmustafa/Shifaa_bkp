@@ -20,9 +20,16 @@
                     <h:outputLabel value="#{bundle.CreateUserAuthLabel_username}" for="username" />
                     <h:inputText id="username" value="#{userAuthController.selected.username}" title="#{bundle.CreateUserAuthTitle_username}" />
                     <h:outputLabel value="#{bundle.CreateUserAuthLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{userAuthController.selected.password}" title="#{bundle.CreateUserAuthTitle_password}" />
+                    <h:inputSecret id="password" value="#{userAuthController.selected.password}" title="#{bundle.CreateUserAuthTitle_password}" />
                     <h:outputLabel value="#{bundle.CreateUserAuthLabel_email}" for="email" />
                     <h:inputText id="email" value="#{userAuthController.selected.email}" title="#{bundle.CreateUserAuthTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateUserAuthLabel_groups}" for="groups" />
+                    <h:selectManyListbox id="groups" value="#{userAuthController.groups}">
+                        <f:selectItems value="#{groupAuthController.groups}" 
+                                       var="c"
+                                       itemLabel="#{c.groupname}" 
+                                       itemValue="#{c.id}" />
+                    </h:selectManyListbox >
                     <h:outputLabel value="#{bundle.CreateUserAuthLabel_clinic}" for="clinic" />
                     <h:selectOneMenu id="clinic" value="#{userAuthController.selected.clinic}" title="#{bundle.CreateUserAuthTitle_clinic}" >
                         <f:selectItems value="#{clinicController.itemsAvailableSelectOne}"/>
