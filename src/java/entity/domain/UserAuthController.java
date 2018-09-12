@@ -90,15 +90,20 @@ public class UserAuthController implements Serializable {
     }
 
     public String prepareCreate() {
+        groups = new ArrayList<>();
         current = new UserAuth();
         selectedItemIndex = -1;
         return "Create";
     }
 
     public String create() throws NoSuchAlgorithmException {
-        for (String id : groups) {
-            GroupAuth groupAuth = groupAuthFacade.find(Long.parseLong(id));
-            current.addGroupAuth(groupAuth);
+        System.out.println("outside create......................" + groups);
+        if (!groups.isEmpty()) {
+            System.out.println("create......................" + groups);
+            for (String id : groups) {
+                GroupAuth groupAuth = groupAuthFacade.find(Long.parseLong(id));
+                current.addGroupAuth(groupAuth);
+            }
         }
         current.setPassword(new EncryptPassword().encrypt("MD5", current.getPassword()));
         try {
@@ -114,7 +119,7 @@ public class UserAuthController implements Serializable {
     public String prepareEdit() {
         current = (UserAuth) getItems().getRowData();
         groups = new ArrayList<>();
-        for(GroupAuth g: current.getGroupAuths()) {
+        for (GroupAuth g : current.getGroupAuths()) {
             System.out.println(g.getGroupname());
             groups.add(g.getId().toString());
         }

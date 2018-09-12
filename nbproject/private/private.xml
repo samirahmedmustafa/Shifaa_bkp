@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/failed_to_create.xhtml</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/clinicService/Create.xhtml</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/src/java/entity/domain/ClinicServiceController.java</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/src/java/entity/domain/util/Helper.java</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/clinicService/Edit.xhtml</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/clinicService/List.xhtml</file>
-            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/index.xhtml</file>
+            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/src/java/entity/domain/UserAuth.java</file>
+            <file>file:/C:/Users/sawad/Documents/NetBeansProjects/Shifaa/web/userAuth/Create.xhtml</file>
         </group>
     </open-files>
 </project-private>
